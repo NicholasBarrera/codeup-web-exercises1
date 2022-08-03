@@ -55,7 +55,7 @@ do {
 	}
 	
 } while(isNaN(enterNumber) || enterNumber % 2 == 0 || 
-		enterNumber >= 50 || enterNumber < 1);
+		enterNumber > 50 || enterNumber < 1);
 
 
 

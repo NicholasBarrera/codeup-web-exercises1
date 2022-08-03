@@ -20,9 +20,10 @@
 65536
 */
 
-/*var i = 1
+/*
 
 while (i < 65536) {
+   	var i = 1
     i * 2;
    console.log(i)
    
