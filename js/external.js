@@ -59,13 +59,18 @@ alert("Your paycheck for this week is $" + payday)
 /*A student can be enrolled in a class only if the class is not full and the class schedule does 
 not conflict with her current schedule.*/
 
-var classNotFull = true 
-var noConflict = true
+var classNotFull = true
+var noConflict = confirm('Does this class interfere with any other classes?')
 
 
 var enroll = classNotFull && noConflict
 
-alert('You are now enrolled in class.')
+if(enroll){
+	alert('You are now enrolled in class.')
+}
+
+else 
+	alert('You are not enrolled in this class.')
 
 /*A product offer can be applied only if a person buys more than 2 items, and the offer has not expired. 
 Premium members do not need to buy a specific amount of products.*/
@@ -73,8 +78,18 @@ Premium members do not need to buy a specific amount of products.*/
 var premium = confirm('Are you a premium member?')
 var cartsize = prompt('How many items are in your cart?')
 
-var offerValid = premium = true || cartsize > 2
+var offerValid = (premium == true || cartsize > 2)	
 
+if(offerValid){
+	alert('You qualify for the offer.')
+}
+
+else 
+	alert('You do not qualify for the offer.')
+
+
+
+	
 
 //Create a variable that holds a boolean value for each of the following conditions:
 var username = 'codeup'
