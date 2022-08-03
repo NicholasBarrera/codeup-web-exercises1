@@ -62,13 +62,8 @@ for(let i = 0; i<10; i++) {
 */
 
 for ( let i = 1; i < 10; i++) {
-    let x = i;
-    let xstr = x.toString();
-    let rep = xstr.repeat(x)
-    console.log(rep)
+    console.log(i.toString().repeat(i))
 }
-
-
 
  // Question 5:
 /*Create a for loop that uses console.log to create the output shown below.
@@ -95,8 +90,8 @@ for ( let i = 1; i < 10; i++) {
 5
 */
 
-for (var i = 105; i > 5; i - 5) {
-    console.log(i - 5);
-    i-=5;
+for(let i = 100; i>=5; i -= 5) {
+    console.log(i)
+
 }
 

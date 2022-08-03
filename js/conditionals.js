@@ -192,8 +192,6 @@ if (enterNumber) {
     else {
         alert("Thank you for your participation!")
     }
-    
-
 
 }
 else {
@@ -201,4 +199,4 @@ else {
 }
 
 
-   git commit -m ""
+   
