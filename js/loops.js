@@ -40,11 +40,13 @@ For example:
 for(let i = 0; i<10; i++) {
     let random = Math.floor((Math.random() * 200) + 20);
     if(random % 2 == 0) {
-        console.log(random + "is even.")
+        console.log(`${random} is even.`)
     } else {
-        console.log(random + "is odd.")
+        console.log(`${random} is odd.`)
     }
 }
+
+
 
 // Question 4:
 /*Create a for loop that uses console.log to create the output shown below.
