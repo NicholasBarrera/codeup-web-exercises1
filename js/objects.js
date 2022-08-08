@@ -50,10 +50,11 @@ console.log(person.sayHello());
 
      var shoppers = [
          {name: 'Cameron', amount: 180},
-         {name: 'George', amount: 320}
+         {name: 'George', amount: 320},
+         {name: 'Ryan', amount: 250}
      ];
 
-     function discountPrice (total, discountRate) {
+function discountPrice (total, discountRate) {
     total = parseFloat(total)
     discountRate = parseFloat(discountRate)
     return total - (total * (discountRate * 0.01));
@@ -75,6 +76,8 @@ shoppers.forEach(function (shopper) {
     }
 });
 
+
+
     /** TODO:
      * Create an array of objects that represent books and store it in a
      * variable named `books`. Each object should have a title and an author
@@ -87,6 +90,39 @@ shoppers.forEach(function (shopper) {
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+var books = [
+    {
+        title: 'It',
+        author: {
+            firstName: 'Stephen',
+            lastName: 'King'
+        }
+    },
+    
+    {
+        title: 'Doctor Sleep',
+        author: {
+            firstName: 'Stephen', 
+            lastName: 'King'
+        }
+
+    },
+    {
+        title: 'Green Eggs and Ham',
+        author: {
+            firstName: 'Dr',
+            lastName: 'Seuss'
+        } 
+    },
+    {
+        title: 'The Bible',
+        author: {
+            firstName: 'Jesus',
+            lastName: 'Christ'
+        }
+    }
+    
+]
 
     /**
      * TODO:
@@ -113,15 +149,57 @@ shoppers.forEach(function (shopper) {
      *      ...
      */
 
+books.forEach(function(book, index) {
+    console.log(`Book # ${index + 1}`)
+    console.log(`Title: ${book.title}`)
+    console.log(`Author: ${book.author.firstName} ${book.author.lastName}`)
+
+})
+
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
      *   name and returns a book object with the properties described
      *   previously. Refactor your code that creates the books array to instead
-     *   use your function.
-     * - Create a function named `showBookInfo` that accepts a book object and
+     *   use your function.*/
+
+function createBook(nameOfBook, firstNameAuthor, lastNameAuthor) {
+    
+
+    books.push({
+        title: nameOfBook, 
+        author: {
+            firstName: firstNameAuthor,
+            lastName: lastNameAuthor
+        }
+        })
+    }
+
+console.log(createBook('Mist', 'Stephen', 'King'));
+
+ 
+     
+     /* - Create a function named `showBookInfo` that accepts a book object and
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+function showBookInfo(book) {
+    books.forEach(function(book, index) {
+    console.log(`Book # ${index + 1}`)
+    console.log(`Title: ${book.title}`)
+    console.log(`Author: ${book.author.firstName} ${book.author.lastName}`)
+
+})
+
+
+}
+
+
+console.log(showBookInfo())
+
+
+
 
 })();
