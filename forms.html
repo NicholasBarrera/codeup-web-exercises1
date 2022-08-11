@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>HTML Forms</title>
+</head>
+<body>
+	<header>
+		<h1>HTML Forms</h1>
+	</header>
+	<main>
+		<section id="login form">
+			<h2>Login</h2>
+				<form method="POST" action="https://request-inspector.glitch.me/">
+					<input type="text" name="Email" placeholder="Email or phone number"><br>
+					<br><input type="password" name="Password" placeholder="Enter your password">
+					<br>
+					<label for="remember">
+						Remember me?
+						<input id="remember" type="checkbox" name="remember" value="true">
+					</label>
+					<br>
+					<br>
+					<a href="">Forgot your username?</a>
+					<br>
+					<a href="">Forgot your password?</a><br>
+					<br>
+					<button type="submit">Sign In</button>
+					<p>or</p>
+					<img src="images/googlepic.png" alt="Google Logo">
+					<h5>Sign in with Google</h5>
+					<h5>Not a member?<a href="">Join today!</a></h5>
+				</form>
+		</section>
+		<br>
+		<section id="bio">
+			<h2>Personal Information</h2>
+				<form method="POST" action="https://request-inspector.glitch.me/">
+					<input type="text" name="first" placeholder="First Name">
+					<input type="text" name="last" placeholder="Last Name">
+					<input type="text" name="middle" placeholder="Middle Initial">
+					<br>
+					<br>
+					<input type="text" name="first" placeholder="Date of Birth">
+					<input type="text" name="last" placeholder="Home Address">
+					<br>
+					<br>
+					<textarea name="bio" placeholder="Tell us your story!"></textarea>
+					<br>
+					<br>
+					<button type="submit">Submit</button>
+				</form>
+		</section>
+		<section>
+			<h3>How Did You Hear About Us?</h3>
+			<p>Select all that apply.</p>
+			<form method="POST" action="https://request-inspector.glitch.me/">
+				<label for="o1">
+					<input type="checkbox" id="o1" name="hear about" value="billboard">
+					Billboard
+				</label>
+				<br>
+				<label for="o2">
+					<input type="checkbox" id="o2" name="hear about" value="radio">
+					Radio
+				</label>
+				<br>
+				<label for="o3">
+					<input type="checkbox" id="o3" name="hear about" value="internet">
+					Internet
+				</label>
+				<br>
+				<label for="o4">
+					<input type="checkbox" id="o4" name="hear about" value="TV">
+					TV
+				</label>
+				<br>
+				<label for="o4">
+					<input type="checkbox" id="o4" name="hear about" value="other">
+					Other
+				</label>
+				<br>
+			    <button type="submit">Submit</button>
+			</form>
+		</section>
+		<section>
+			<h3>What browser are you using?</h3>
+			<form method="POST" action="https://request-inspector.glitch.me/">
+				<label for="browser">
+					Select your browser.
+					<br>
+					<select id="browser" name="browser">
+						<option value="chrome">Chrome</option>
+						<option value="ie">Internet Explorer</option>
+						<option value="firefox">Firefox</option>
+						<option value="edge">Edge</option>
+						<option value="opera">Opera</option>
+						<option value="other">Other</option>
+					</select>
+				</label>
+				<button type="submit">Submit</button>
+			</form>
+		</section>
+	</main>
+</body>
+
+</html>
