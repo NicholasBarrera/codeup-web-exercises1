@@ -1,5 +1,90 @@
 
 .fancy-header {
-    color: purple; /* single line comment */
-    text-decoration: underline;
+    color: rgb(255, 255, 255); /* single line comment */
+    text-align: right ;
+    font-family: Optima;
+    font-size: 40px;
+    margin-top: 0;
+
 }
+
+.title {
+    color: whitesmoke;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(54, 69, 79);
+    color: whitesmoke;
+    margin: 0;
+
+}
+
+header {
+    background-color: lightcoral;
+    height: 120px;
+
+
+}
+
+.container {
+   
+   display: flex;
+   flex-wrap: wrap;
+   width: 150%;
+   justify-content: left;
+
+
+}
+
+img {
+    width: 100%;
+    max-width: 350px;
+}
+ th, td {
+
+    border-bottom: 1px solid;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+tr:hover {
+     background-color: lightcoral;
+     
+
+}
+
+th {
+    background-color: lightcoral;
+}
+
+.dropdown {
+    padding: 2px;
+    width: 40%;
+    height: 10%;
+}
+
+.dropdown, select {
+    text-align: left;
+    width: 40%;
+
+
+}
+
+.dropdown, option {
+
+
+}
+
+
+
+
+
+
+
+
+

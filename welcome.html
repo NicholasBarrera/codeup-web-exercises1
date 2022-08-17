@@ -8,34 +8,39 @@
 </head>
 <body>
     <header>
-        <h1 class="fancy-header" class="top">Welcome to Veridian Dynamics!</h1>
+        <div class="dropdown">
+            <form method="GET" action="">
+                <select>
+                    <option>Home</option>
+                    <option><a href="https://www.google.com">Jobs</a></option>
+                    <option>Shop</option>
+                    <option>Locations</option>
+                    <option>Support</option>
+                    <option>Contact Us</option>
+                </select>
+            </form>
+        </div>
+        <h1 class="fancy-header" class="top">Welcome to Veridian Dynamics</h1>
         <p>At Veridian Dynamics, <strong>we</strong>
         solve <em>your</em> problems with <strong><em>technology.</em></strong>
         </p>
-        <hr>
+    </div>
     </header>
     <main>
         <section>
-            <h2>Core Values</h2>
-            <div>
-                <ul>
+            <h2 class="title">Core Values</h2>
+            <div id="list">
+                <ol>
                     <li>Competence</li>
                     <li>Involvement</li>
                     <li>Technology</li>
-                </ul>
-            </div>
-            <div>
-                <ol>
-                    <li>Become #1 in Technology</li>
-                    <li>Increase Success by 20%</li>
-                    <li>Increase Business by 30%</li>
                 </ol>
             </div>
             <hr>
         </section>
-        <section class="pics">
+        <section class="title">
             <h2>Company Vision</h2>
-            <div>
+            <div class="container">
                 <img src="images/office.png" alt="Office">
                 <img src="images/office_building.png" alt="Office Building">
                 <img src="images/future.png" alt="Future">
@@ -44,7 +49,7 @@
             </div>
         </section>
         <section>
-            <h2>Our Product</h2>
+            <h2 class="title">Our Product</h2>
             <div>
                 <table>
                     <tr>
