@@ -1,0 +1,9 @@
+h3 {
+	color: blue;
+}
+
+hr {
+	border-top: 5px solid;
+	border-radius: 1px;
+	color: rgb(0, 100, 0);
+}

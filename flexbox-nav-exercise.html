@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
     <title>Flex Box Nav Exercise</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="css/flexbox-nav-exercise.css">
@@ -24,11 +24,41 @@
     </div>
     <ul class="right-nav">
         <li><a href="#">Follow Us</a></li>
-        <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
-        <li><a href="#"></a><i class="fa-solid fa-cart-shopping"></i></li>
-        <li><a href="#"><i class="fa-solid fa-circle-user"></i></a></li>
+        <li><a href="#"><i class="fa-solid 
+            fa-magnifying-glass"></i></a></li>
+        <li><a href="#"><i class="fa-solid 
+            fa-cart-shopping"></i></a></li>
+        <li><a href="#"><i class="fa-solid 
+            fa-circle-user"></i></a></li>
        
 </nav>
+<section class="login-form">
+            <div class="login">
+                <h3>Login to Your Account</h3>
+                <form method="POST" action="https://request-inspector.glitch.me/">
+                    <input type="text" name="Email" placeholder="Email or phone number"><br>
+                    <br><input type="password" name="Password" placeholder="Enter your password">
+                    <br>
+                    <label for="remember">
+                        Remember me?
+                        <input id="remember" type="checkbox" name="remember" value="true">
+                    </label>
+                    <br>
+                    <br>
+                    <a href="">Forgot your username?</a>
+                    <br>
+                    <a href="">Forgot your password?</a><br>
+                    <br>
+                    <div class="sign-in">
+                        <button type="submit" class="submit">Sign In</button>
+                        <p>or</p>
+                        <img src="images/googlepic.png" alt="Google Logo">
+                        <h5>Sign in with Google</h5>
+                    </div>
+                    <h5>Not a member?<a href="">Join today!</a></h5>
+            </div>
+                </form>
+        </section>
 <footer class="all-foot">
     <ul class="left-footer">
         <li><a href="#">Home</a></li>
@@ -41,7 +71,6 @@
         <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-
     </ul>
 </footer>
 </body>

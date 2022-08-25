@@ -5,6 +5,7 @@
 body {
 	margin: 0;
 	height: 100%;
+	background-color: black;
 }
 
 nav {
@@ -14,9 +15,12 @@ nav {
 	display: flex;
 	position: relative;
 	font-family: sans-serif;
-
+	padding: 1em;
 }
 
+nav.all-nav {
+
+}
 nav a {
     color: black;
     text-decoration: none;
@@ -32,6 +36,8 @@ nav a:hover {
 
 ul {
 	list-style: none;
+	margin:  0;
+	padding: 0;
 }
 
 .left-nav {
@@ -51,7 +57,8 @@ ul {
 	font-family: 'Monserrat', sans-serif;
 	font-size: 2em;
 	position: absolute;
-	right: 40%;
+	right: 50%;
+	bottom: 10%;
 
 }
 
@@ -82,6 +89,7 @@ footer a:hover {
 }
 
 .left-footer {
+	
 	display: flex;
 	margin-right: auto;
 	align-items: center;
@@ -90,10 +98,10 @@ footer a:hover {
 
 .logo-footer {
 	position: absolute;
-	right: 42%;
+	right: 50%;
 	font-size: 2em;
 	font-family: 'Monserrat', sans-serif;
-	top: 20%;
+	top: 30%;
 }
 
 .right-footer {
@@ -103,11 +111,41 @@ footer a:hover {
 
 }
 
+.login-form {
+	
+	position: fixed;
+	left: 26%;
+	top: 15%;
+	padding: 2em;
+	margin auto;
+	background-color: white;
+	width: 40%;
+	height: 65%;
 
+	
+}
 
+.login {
+	position: absolute;
+	text-align: center;
+	font-family: 'Monserrat', sans-serif;
+	font-weight: lighter;
+	top: 0;
+	right: 30%;
+}
 
+.sign-in {
+	text-align: center;
 
+}
 
+.submit {
+	background-color: lightcyan;
+	width: 100%;
+	padding: .5em;
+	border-width: .5px darkcyan;
+
+}
 
 
 
