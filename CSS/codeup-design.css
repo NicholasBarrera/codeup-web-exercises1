@@ -59,9 +59,4 @@ body {
 }
 
 
-@media screen and(max-width:  750px) {
-    div.buttons {
-        width: 30%;
-    }
-}
 
