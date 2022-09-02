@@ -30,25 +30,44 @@
 <button id="btn-1">Button 1</button>
 <button id="btn-2">Button 2</button>
 <button id="btn-3">Button 3</button>
-<button id="btn-4">Button 4</button>
+<button id="btn-4">Button 4</button> 
+
+<button onclick="toggleBtnClick()">Change</button>
+<img id="baseImg" src="https://images.pexels.com/photos/12936834/pexels-photo-12936834.jpeg?cs=srgb&dl=pexels-stephen-eshun-12936834.jpg&fm=jpg">
+
+
 
 <script>
     (function() {
         "use strict";
+
+var clicked = false;
+
+function toggleBtnClick() {
+  var img = document.getElementById('baseImg');
+  if (clicked) {
+    img.src = 'https://images.pexels.com/photos/12936834/pexels-photo-12936834.jpeg?cs=srgb&dl=pexels-stephen-eshun-12936834.jpg&fm=jpg';
+    clicked = false;
+  } else {
+    img.src = 'https://images.pexels.com/photos/9318388/pexels-photo-9318388.jpeg?cs=srgb&dl=pexels-brunno-rodrigues-9318388.jpg&fm=jpg';
+    clicked = true;
+  }
+}
         // TODO: Uncomment next line and get the main header element by id
          var mainHeader = document.getElementById('main-header');
          console.log(mainHeader);
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-        var JavaScriptIsCool = function () {
+        var buttonOne = function () {
         mainHeader.innerHTML = 'JavaScript is Cool!'
         }
+
         // TODO: Uncomment the next line and get the sub header element by id
         var subHeader = document.getElementById('sub-header');
         console.log(subHeader);
 
         // TODO: Set the text color of subHeader to blue
-        var blueHeader = function () {
+        var buttonTwo = function () {
         subHeader.style.color = 'blue'
         }
 
@@ -87,12 +106,14 @@
         /* TODO: Make the first button set inner HTML of mainHeader to 
             'JavaScriptIsCool'*/
 
-        document.getElementById('btn-1').addEventListener('click', JavaScriptIsCool );
+        document.getElementById('btn-1').addEventListener('click', buttonOne );
+
+
 
         /* TODO: Make the second button set the text color of 'subHeader' 
             to blue*/
 
-        document.getElementById('btn-2').addEventListener('click', blueHeader);
+        document.getElementById('btn-2').addEventListener('click', buttonTwo);
 
         /* TODO: Make the third button set the text color of every 
             other list item to grey, and set the text color of li 
