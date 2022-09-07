@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JQuery FAQs</title>
+    <style>
+        .invisible {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>10 FUN FACTS ABOUT OUR NATIONAL PARKS</h1>
+
+    <dl>
+        <dt>Seeing the forest for the tree:</dt>
+        <dd class="invisible">
+        Sequoia National Park’s most famous inhabitant is a tree known by the name of General Sherman. The planet’s largest living tree, it towers 275 feet high and is thought to be around 2,000 years old. And it helped to spur the creation of the first national park established to protect a living organism.</dd>
+
+        <dt>Fire and sandstone:</dt>
+        <dd class="invisible">En route to the opening ceremony of the 2002 Winter Olympics at Salt Lake City, the Olympic torch passed beneath Utah’s iconic Delicate Arch in Arches National Park, followed by Bryce Canyon and Zion National Parks—a small sampling of the 22 National Park Service areas included in that year’s torch relay.</dd>
+
+        <dt>Dig this: In 1906:</dt> 
+        <dd class="invisible">Colorado’s Mesa Verde National Park—and its 5,000 archeological sites, including 600 cliff dwellings of the Ancestral Pueblo people—became the first national park established to protect man-made structures, and also the world’s first archaeological site to receive federal protection. In 1978, UNESCO designated Mesa Verde as one of a dozen global wonders inducted into the inaugural class of World Heritage sites.</dd>
+
+        <dt>Put it on ice:</dt> 
+        <dd class="invisible">Kenai Fjords National Park claims more than just fjords among its features. There are giant salmon, including the biggest salmon ever caught with hook and line—a 97-pound-plus behemoth that set the record in 1985. And three-centimeter-long ice worms live inside glaciers, moving through ice using small bristles on their bodies.</dd>
+
+        <dt>Get your goat:</dt> 
+        <dd class="invisible">In 1932, the Waterton-Glacier International Peace Park became the world’s first international peace park—a symbol of cross-border goodwill to preserve the biodiversity and history shared by these two places. Goat Haunt, along Waterton Lake, is considered the center of the park. Crossing the border here between the U.S. and Canada requires a valid passport, and the stamp carries the image of a mountain goat.<dd>
+
+        <dt>Superlative species:</dt> 
+        <dd class="invisible">In addition to moose, bison, and yellow-bellied marmots, wildlife at Grand Teton National Park includes such showstoppers as the pronghorn—the Western Hemisphere’s fastest land mammal; the trumpeter swan, North America’s largest waterfowl; and the calliope hummingbird, North America’s smallest breeding bird.</dd>
+
+        <dt>Identity crisis:</dt> 
+        <dd class="invisible">Now the third most visited national park, Zion had a popularity problem a century ago. The acting head of the park service at the time, Horace Albright, blamed its hard-to-pronounce (and even harder to spell) original name, Mukuntuweap National Monument, which was intended to honor the native Southern Paiute people when the canyon was declared a national monument by President William Howard Taft in 1909. Albright considered it his “personal crusade to mold the park from a little national monument into a great national park”—and a name change was a big part of that. In 1919, President Woodrow Wilson renamed the park Zion National Park, and its profile quickly began to grow.</dd>
+
+        <dt>No Jurassic Park:</dt> 
+        <dd class="invisible">Though the Grand Canyon evokes comparisons to The Land Before Time, no dinosaur bones have ever been discovered at this iconic national park. Rock on the canyon walls predate dinosaurs by hundreds of millions of years, but the canyon isn’t thought to have formed until long after the dinosaurs had gone extinct.</dd>
+
+        <dt>Where the buffalo still roam:</dt>
+        <dd class="invisible"> In the only place in the United States where buffalo have roamed continuously since the prehistoric era, Yellowstone National Park’s bison herd is nearly 5,000 animals strong—a huge rebound from just 23 animals during the early 1900s. Today, the Yellowstone bison make up the country’s largest and oldest free-range herd.</dd>
+
+        <dt>Heaps of fun:</dt> 
+        <dd class="invisible">In the early 1900s, one of Yellowstone National Park’s main attractions was watching black bears and grizzles devour trash at open-air garbage heaps. Park rangers would simultaneously give educational talks about the bears, and they even posted signs that said, “Lunch Counter—For Bears Only.” Unsurprisingly, several tourists were injured in bear attacks before the park closed the
+        dumps to the public during World War II.</dd>
+    </dl>
+
+    
+     <button type="button" id="toggleSwitch">Toggle</button>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous">  
+</script>
+
+    
+<!--
+    /*$(document).ready(function(){
+        $('dd').click(function(event) {
+            event.preventDefault();
+            $('dd').addClass('invisible');
+        });
+    });
+
+    $(document).ready(function() {
+        $('#link').click(function(event) {
+            event.preventDefault();
+            $('dd').toggleClass('invisible');
+        })
+    });
+
+     $('dd').click(function() {
+        $('body').css('backgroundColor', 'lightblue')
+    });*/
+
+    <script>
+        'use strict';
+        $(document).ready(function() {
+            $('dd').addClass('invisible');
+            $('dd').click(function(){
+                $(this).css('background-color','orange');
+            });
+            $('#toggleSwitch').click(function(e) {
+                $('dd').toggleClass('invisible');
+            });});
+    </script>
+-->
+
+
+
+<script>
+    $("#toggleSwitch").click(function () {
+        $("dd").toggleClass("invisible")
+
+    });
+
+    $("dt").click(function (){
+        $(this).css("background", "yellow")
+    })
+</script>
+
+</body>
+</html>
