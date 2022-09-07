@@ -46,9 +46,43 @@
         <dd class="invisible">In the early 1900s, one of Yellowstone National Park’s main attractions was watching black bears and grizzles devour trash at open-air garbage heaps. Park rangers would simultaneously give educational talks about the bears, and they even posted signs that said, “Lunch Counter—For Bears Only.” Unsurprisingly, several tourists were injured in bear attacks before the park closed the
         dumps to the public during World War II.</dd>
     </dl>
-
+    <button type="button" id="toggleSwitch">Toggle</button>
+     
+    <h2>My Favorite Parks to Visit with Cool Facts</h2>
+   
+        <h3>Big Bend National Park</h3>
+            <ul id="big-bend">
+                <li>Location: Texas.</li>
+                <li>Acreage: 801,163 acres.</li>
+                <li>Visitation: 581,000 visitors in 2021.</li>
+                <li>Highest Elevation: 7,825 feet at Emory Peak.</li>
+            </ul>
+         <h3>Grand Canyon National Park</h3>
+            <ul id="grand-canyon">
+                <li>The Grand Canyon is bigger than the state of Rhode Island.</li>
+                <li>The Grand Canyon itself can influence the weather.</li>
+                <li>The Grand Canyon was carved over some 6 million years.</li>
+                <li>The most dangerous animal in the park is the rock squirrel. </li>
+            </ul>
+         <h3>Yellowstone National Park</h3>
+            <ul id="yellowstone">
+                <li>Yellowstone encompasses 3,472 square miles (2,221,766 acres) which makes it larger than Rhode Island and Delaware combined.</li>
+                <li>Yellowstone is home to more than 500 active geysers (more than half the world’s geysers).</li>
+                <li>There are approximately 1,000 miles of hiking trails in Yellowstone.</li>
+                <li> 285 species of birds can be found in Yellowstone (150 nesting).</li>
+            </ul>
+        <h3>Yosemite National Park</h3>
+            <ul id="yosemite">
+                <li>Yosemite is the only national park to bid to host the winter Olympics. </li>
+                <li>Yosemite is one of the few places in the U.S. where you can see a rainbow at night.</li>
+                <li>The park’s diverse landscape supports more than 400 species.</li>
+                <li>Yosemite is one of the few places in the U.S. where you can see a rainbow at night.</li>
+            </ul>
     
-     <button type="button" id="toggleSwitch">Toggle</button>
+        
+    
+     
+     <button type="button" id="changeYellow">Change Yellow</button>
 
 <script
   src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -88,8 +122,10 @@
             });});
     </script>
 -->
-
-
+<!-- $('li').each(function(index, element){
+    console.log(index);
+     console.log(element);
+})-->
 
 <script>
     $("#toggleSwitch").click(function () {
@@ -100,6 +136,60 @@
     $("dt").click(function (){
         $(this).css("background", "yellow")
     })
+
+    /*$('dt').each(function(index){
+        let innerText = $(element).text();
+        $(element).text($innerText + ' ' + index)
+        if (index % 2 == 0 ) {
+            $(this).css('background-color', '#FF0');
+        }
+    });*/
+
+    //Create a button that, when clicked, makes the last li in each ul have a yellow background.
+/***************Failed attempts********************
+    // $('ul').each(function(index){
+    //    console.log($(index))
+    //})
+    // $('ul').children().last().css('background', 'yellow')
+    // $('ul').children().first().css('background', 'yellow')
+     //$('li').last().css('background', 'yellow')
+  
+
+
+    // $('li').click(function () {
+    //     $(this).parent().children('li').last().css('background', 'yellow')
+    // });*/
+
+    $('#changeYellow').on('click', function() {
+        $('ul').each(function(index, element){
+            $(element).children().last().css('background', 'yellow')
+        })
+
+    });
+
+    //When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
+
+    $('h3').on('click', function() {
+        
+       $(this).next().children().css('font-weight', 'bold')
+    });
+
+
+    //When any list item is clicked, first li of the parent ul should have a font color of blue.
+
+    $('li').on('click', function(){
+        $(this).parent().children().first().css('color', 'blue')
+    });
+
+
+
+
+
+
+
+
+
+
 </script>
 
 </body>
