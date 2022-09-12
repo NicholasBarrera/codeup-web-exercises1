@@ -34,6 +34,27 @@
    
 
     // TODO: Take the data from inventory.json and append it to the products table
+       function handleResponse(items) {
+            let html = "";
+            items.forEach(function (item) {
+                let itemHtml = '<tr>';
+                itemHtml += '<td>' + item.title + '</td>';
+                itemHtml += '<td>' + item.quantity + '</td>';
+                itemHtml += '<td>$' + item.price + '</td>';
+                itemHtml += '<td>' + item.categories + '</td>';
+                itemHtml += '</tr>';
+                html += itemHtml;
+            });
+            $('#insertProducts').html(html);
+            console.log('items up to date');
+        }
+
+
+        $('#refresh').click(function(e) {
+            $.get('data/inventory.json').done(handleResponse);
+        });
+
+
     //       HINT: Your data should come back as a JSON object; use console.log() to inspect
     //             its contents and fields
     //       HINT: You will want to target #insertProducts for your new HTML elements
