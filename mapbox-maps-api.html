@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet'/>
+     <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 700px;
+        }
+
+        .mapboxgl-popup-anchor-bottom > .mapboxgl-popup-tip {
+            border-top-color: red !important;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+<h1></h1>
+
+
+<div id='map'></div>
+
+
+
+
+<h1 id="coords"></h1>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="js/keys.js"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+<script>
+
+    // mapboxgl.accessToken = MAPBOX_TOKEN;
+    // var map = new mapboxgl.Map({
+    // container: 'map',
+    // style: 'mapbox://styles/mapbox/streets-v11',
+    // zoom: 10,
+    // center: [-98.4916, 29.4252]
+    //
+
+
+// });
+    mapboxgl.accessToken = MAPBOX_TOKEN;
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        //reverse coordinates, add negative to first 
+        center: [-96.77990311542614, 32.78490797329269], // starting position [lng, lat]
+        zoom: 5, // starting zoom
+     
+    });
+
+     setTimeout(function() {
+            map.setCenter([-96.77990311542614, 32.78490797329269]);
+            map.setZoom(15);
+            map.setStyle('mapbox://styles/mapbox/streets-v11');
+        }, 3000);
+
+     
+      // let popup = new mapboxgl.Popup()
+      //       .setHTML("Terry Black's BBQ");
+        
+      //   let marker = new mapboxgl.Marker({draggable: true})
+      //       .setLngLat([-96.77990311542614, 32.78490797329269])
+      //       .setPopup(popup)
+      //       .addTo(map);
+        
+      //   marker.on('dragend', function() {
+      //       let coordinates = marker.getLngLat();
+      //       console.log(coordinates);
+      //       console.log(coordinates.lat);
+      //       console.log(coordinates.lng);
+      //       $('#coords').html('Latitude: ' + coordinates.lat + '<br> Longitude: ' + coordinates.lng);
+      //    });
+    // var marker = new mapboxgl.Marker()
+    //     .setLngLat([-98.4916, 29.4260])
+    //     .addTo(map);
+
+    //  geocode("Dallas, Texas", MAPBOX_TOKEN).then(function(result) {
+        
+    //     map.setCenter(result);
+    //     map.setZoom(8);
+    // });
+
+    var restaurants = [
+            {
+                name: 'Silo',
+                address: 'Silo: Elevated Cuisine, San Antonio, TX',
+                message: 'It\'s great!', 
+                location: [-96.7813790617483, 32.78245215132888]
+            },
+            {
+                name: 'Chama Gaucha Steakhouse',
+                address: 'Chama Gaucha Steakhouse, San Antonio, TX',
+                message: 'Too good!',
+                location: [-96.78152315708984, 32.783438084026564 ]
+            },
+            {
+                name: 'Tarka Indian Kitchen',
+                address: 'Tarka Indian Kitchen, San Antonio, TX',
+                message: 'Awesome!', 
+                location: [-96.78243505118027, 32.784341025996014 ]
+            }
+];
+
+
+    restaurants.forEach(function(restaurant) {
+        let popup = new mapboxgl.Popup({offset: 25})
+        .setHTML(
+            "<h2>" + restaurant.name + "</h2>" +
+            "<h4><em>" + restaurant.address + "</em></h4>" +
+            "<p>" + restaurant.message + "</p>");
+        let marker = new mapboxgl.Marker()
+        .setLngLat(restaurant.location)
+        .setPopup(popup)
+        .addTo(map);
+})
+  
+
+
+
+
+
+</script>
+</body>
+</html>

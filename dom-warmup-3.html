@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Warm Up 3</title>
+</head>
+<body>
+<main>
+    <div>
+        <label for="text-input">Text Entry</label>
+        <input id="text-input" type="text" placeholder="Enter text here">
+        <button id="text-btn">Display Text</button>
+    </div>
+    <p id="text"></p>
+</main>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+    $('#text-btn').on('click', function () {
+    let text = $('#text-input').val();
+    $('#text').text(text);
+
+    $("#text-input").val('');
+
+});
+    /* 
+        TODO: When text is typed in the text input and the button is clicked, the typed text should be 
+         displayed in the paragraph and the text input value should be reset to an empty string.  
+     */
+
+ 
+</script>
+</body>
+</html>

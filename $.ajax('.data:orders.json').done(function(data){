@@ -1,0 +1,32 @@
+$.ajax('.data/orders.json').done(function(data){
+	console.log(data);
+});
+
+
+$.ajax('/data/orders.json')
+
+
+
+.fail(function() {
+	console.log("error")
+});
+
+.always(function() {
+	alert('function always runs')
+});
+
+// Assign to variable
+var jqXhr = $.ajax("/some-url");
+
+// Attach callback functions individually
+jqXhr.done(function(data, status, jqXhr) {
+    alert("Everything went great!");
+});
+
+jqXhr.fail(function(jqXhr, status, error) {
+    alert("There was an error!");
+});
+
+jqXhr.always(function() {
+    alert("And we're done!");
+});
