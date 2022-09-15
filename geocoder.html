@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="css/weather_map.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="js/keys.js"></script>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+<body>
+<script src="js/mapbox-geocode-utils.js"></script>
+<!--Navbar-->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="img/fog-day.png" width="50" height="50" class="d-inline-block align-top" alt="" loading="lazy">
+        Weather
+    </a>
+    <span id="currentCity" class="navbar-text">
+      Current City:
+    </span>
+</nav>
+
+<div id="lastUpdated" class="alert alert-primary" role="alert">
+    Last updated:
+</div>
+
+<div class="container p-0">
+    <div class="jumbotron jumbotron-fluid p-0">
+        <div class="container">
+            <h1 class="display-4" style="background: #a7d9ff">Current Weather:</h1>
+            <div class="row" style="background: #e6fff6">
+                <div id="currentWeather" class="lead col"></div>
+                <div id="currentWeather2" class="lead col"></div>
+            </div>
+        </div>
+    </div>
+    <input type="text" id="searchPlaces">
+    <button type="button" class="btn btn-primary" id="searchPlacesButton">Get Your 5-day Forecast</button>
+</div>
+
+<!--Main Cards-->
+<div id="fiveDayForecast" class="container">
+    <div class="alert alert-primary text-center" role="alert">
+        5-Day Forecast
+    </div>
+    <div class="card-deck">
+        <div id="forecast1" class="card">
+        </div>
+        <div id="forecast2" class="card">
+        </div>
+        <div id="forecast3" class="card">
+        </div>
+        <div id="forecast4" class="card">
+        </div>
+        <div id="forecast5" class="card">
+        </div>
+    </div>
+    <div id="coordinates"></div>
+</div>
+
+
+<div class="container" id='map' style='width: auto; height: 500px;'>
+    <script>
+        mapboxgl.accessToken = MAPBOX_TOKEN;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 11,//start zoom
+            center: [-98.318120, 29.498940]//start pos
+        });
+
+    </script>
+</div>
+
+
+<script>
+    (function(){
+        $().ready(function(){
+            var d = new Date();
+            var tz = Date();
+            // console.log("yikes" + poop);
+            //current weather
+            $.get("http://api.openweathermap.org/data/2.5/weather", {
+                APPID: OPEN_WEATHER_TOKEN,
+                q: "San Antonio, US",
+                units: "imperial"
+            }).done(function(data) {
+                console.log(data.weather[0].main);
+                var temp = data.main.temp.toFixed(0);
+                var tempH = data.main.temp_max.toFixed(0);
+                var tempL = data.main.temp_min.toFixed(0);
+                var tempFeel = data.main.feels_like.toFixed(0);
+                var city = data.name;
+                var wind = data.wind.speed;
+                var description = data.weather[0].description;
+                var mainWeatherCondition = data.weather[0].main;
+                var currentWeatherIcon;
+                var weatherVideo;
+                switch (mainWeatherCondition){
+                    case 'Clouds':
+                        currentWeatherIcon = "img/cloud.png"
+                        weatherVideo = "img/videos/Formation Of Clouds.mp4"
+                        break;
+                    case 'Thunderstorm':
+                        currentWeatherIcon = "img/storm.png"
+                        break;
+                    case 'Drizzle':
+                        currentWeatherIcon = "img/rain.png"
+                        break;
+                    case 'Rain':
+                        currentWeatherIcon = "img/rain.png"
+                        break;
+                    case 'Snow':
+                        currentWeatherIcon = "img/snow.png"
+                        break;
+                    case 'Clear':
+                        currentWeatherIcon = "img/summer.png"
+                        weatherVideo = "img/videos/Footage%20Of%20Sunlight.mp4"
+                        break;
+                    default:
+                        currentWeatherIcon = "img/summer.png"
+                }
+
+                $('#currentCity').append(city);
+                $('#lastUpdated').append(tz);
+                // $('#currentWeather').html(JSON.stringify(data.main, null, 4))
+                $('#currentWeather').append( "<hr>" +
+                    "<img src=" + currentWeatherIcon +">" + "<br>" + "Condtions: " + description + "<hr>" +
+                    "<h4>" +
+                    "Right now the temperature is " + "<h1><em>" + temp + "</em></h1>" + "<hr>" +
+                    "<h4>But it feels like <h4>" + "<h2><em>" + tempFeel + "</em></h2>"
+                    + "</h4>"
+                );
+                $('#currentWeather2').append(
+                    "<div>"+
+                    "<h4>High for today: </h4>" + tempH + "<hr>" +
+                    "<h4>Low for today: </h4>" + tempL +
+                    "</div>"
+                );
+            });
+
+            var markerExists = false;
+            var marker;
+            var destinationLat;
+            var destinationLng;
+
+            self.map.on("click", function(e) {
+                if (markerExists === false) {
+                    markerExists = true;
+                    marker = new mapboxgl.Marker()
+                        .setLngLat(e.lngLat)
+                        .addTo(map);
+                    $('#coordinates').html(marker._lngLat.toString())
+                    destinationLat = marker._lngLat.lat;
+                    destinationLng = marker._lngLat.lng;
+
+                    console.log(e.lngLat);
+                    return marker
+                } else {
+                    marker.remove()
+                    marker = new mapboxgl.Marker()
+                        .setLngLat(e.lngLat)
+                        .addTo(map);
+                }
+                destinationLat = marker._lngLat.lat;
+                destinationLng = marker._lngLat.lng;
+                console.log(destinationLat);
+                $('#coordinates').html(marker._lngLat.toString())
+                $('#searchPlaces').html("")
+            });
+            //    lat={lat}&lon={lon}&appid={your api key},
+
+            $('#searchPlacesButton').click(function (){
+
+                $.get("https://api.openweathermap.org/data/2.5/forecast", {
+                    APPID: OPEN_WEATHER_TOKEN,
+                    lat: destinationLat,
+                    lon: destinationLng,
+                    units: "imperial",
+                    q: $('#searchPlaces').val()
+                }).done(function(data){
+                    $('#searchPlaces').val("")
+                    var day = [];
+                    for (var i = 0; i < 6; i++) {
+                        // var temp = data.list[i].main.temp.toFixed(0);
+                        // var tempH = data.list[i].main.temp_max.toFixed(0);
+                        // var tempL = data.list[i].main.temp_min.toFixed(0);
+                        // var tempFeel = data.list[i].main.feels_like.toFixed(0);
+                        // var mainWeatherCondition = data.list[i].weather[0].main;
+                        day.push({
+                            temp: data.list[i].main.temp.toFixed(0),
+                            tempH: data.list[i].main.temp_max.toFixed(0),
+                            tempL: data.list[i].main.temp_min.toFixed(0),
+                            tempFeel: data.list[i].main.feels_like.toFixed(0),
+                            mainWeatherCondition: data.list[i].weather[0].main,
+                            description: data.list[i].weather[0].description
+                        });
+                        switch (day[i].mainWeatherCondition){
+                            case 'Clouds':
+                                day[i].WeatherIcon = "img/cloud.png"
+                                break;
+                            case 'Thunderstorm':
+                                day[i].WeatherIcon = "img/storm.png"
+                                break;
+                            case 'Drizzle':
+                                day[i].WeatherIcon = "img/rain.png"
+                                break;
+                            case 'Rain':
+                                day[i].WeatherIcon = "img/rain.png"
+                                break;
+                            case 'Snow':
+                                day[i].WeatherIcon = "img/snow.png"
+                                break;
+                            case 'Clear':
+                                day[i].WeatherIcon = "img/summer.png"
+                                break;
+                            default:
+                                day[i].WeatherIcon = "img/summer.png"
+                        }
+                        var target;
+                        switch (day[i]){
+                            case day[1]:
+                                target = $('#forecast1')
+                                break;
+                            case day[2]:
+                                target = $('#forecast2')
+                                break;
+                            case day[3]:
+                                target = $('#forecast3')
+                                break;
+                            case day[4]:
+                                target = $('#forecast4')
+                                break;
+                            case day[5]:
+                                target = $('#forecast5')
+                                break;
+                        }
+                        $(target).html(
+                            "\" className=\"card-img-top\" alt=\"...\">" +
+                            "<div className=\"card-body\">" +
+                            "<h5 className=\"card-title\">" + "Condition: " + day[i].description + "<hr>" + "Feels like: " + day[i].tempFeel + "</h5>" +
+                            "<p className=\"card-text\">" + "High: " + day[i].tempH + "<hr>" + "Low: " + day[i].tempL + "</p>" +
+                            "</div>" +
+                            "<div className=\"card-footer\">" +
+                            "<small className=\"text-muted\"></small>" +
+                            "</div>"
+                        )
+                    }
+                });
+            })
+
+
+
+
+
+        });
+    })();
+</script>
+</body>
+</html>
+
+
