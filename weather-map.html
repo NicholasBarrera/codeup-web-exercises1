@@ -1,365 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
 	<title>Weather Map</title>
-	<!-- bootstrap cdn -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<!-- mapbox css -->
-	<link href="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css" rel="stylesheet">
-	<script src="https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js"></script>
-     <style>
-     /*	mapox css styling */
-  
-        #map {
-          /*  the width and height may be set to any size */
-
-            width: 1500px;
-            height: 700px;
-            position: relative;
-         
-        }
-
-        .mapboxgl-map {
-        	visibility: visible;
-        }
-    </style>
- 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css' rel='stylesheet'/>
+	<style>
+	</style>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
-<script src="js/mapbox-geocoder-utils.js"></script>
-
-<script src="js/keys.js"></script>
-
-
-	<nav class="d-flex justify-content-around bg-primary text-white">
-		<div class="">
-			<h3>Weather App</h3>
-		</div>
-		<div>
-			<h3 id="current-city">Current City: </h3>
-		</div>
-		<!-- weather app nav bar  -->
-
+	<nav class="nav justify-content-between bg-primary text-white mb-3">
+		<h2 class="nav-item">Weather App</h2>
+		<a class="nav-item align-self-center" id="current-city"></a>
 	</nav>
 
-	<main>
-<!--		add ids for date, temp, description to each day-->
-		<section class="d-flex justify-content-between">
-			<!-- cards for weather forecast -->
-			<div id="forecast1" class="card d-flex-column">
+	<form class="form-inline" >
+		<span>Place</span>
+		<div class="form-group mx-sm-3 mb-2">
+			<label for="input-search" class="sr-only"></label>
+			<input type="text" class="form-control" id="input-search" value="Dallas" placeholder="Enter City">
+		</div>
+		<button type="submit" class="btn btn-primary mb-2" id="submit-weather">Find</button>
+	</form>
+	<div class="card-deck">
+		<div class="card">
+			<div class="card-header d-flex justify-content-center" id="first-day">
 
 			</div>
-			<div id="forecast2" class="card d-flex flex-column">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item d-flex justify-content-center" id="first-temp"></li>
+				<li class="list-group-item" id="first-description"></li>
+				<li class="list-group-item" id="first-humidity">Humidity:</li>
+				<li class="list-group-item" id="first-wind"></li>
+				<li class="list-group-item" id="first-pressure"></li>
+			</ul>
+		</div>
+		<div class="card">
+			<div class="card-header d-flex justify-content-center" id="second-day">
 
 			</div>
-			<div id="forecast3" class="card d-flex flex-column">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item d-flex justify-content-center" id="second-temp"></li>
+				<li class="list-group-item" id="second-description"></li>
+				<li class="list-group-item" id="second-humidity"></li>
+				<li class="list-group-item" id="second-wind"></li>
+				<li class="list-group-item" id="second-pressure"></li>
+			</ul>
+		</div>
 
+		<div class="card">
+			<div class="card-header d-flex justify-content-center" id="third-day">
 
 			</div>
-			<div id="forecast4" class="card d-flex flex-column">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item d-flex justify-content-center" id="third-temp"></li>
+				<li class="list-group-item" id="third-description"></li>
+				<li class="list-group-item" id="third-humidity"></li>
+				<li class="list-group-item" id="third-wind"></li>
+				<li class="list-group-item" id="third-pressure"></li>
+			</ul>
+		</div>
 
+		<div class="card">
+			<div class="card-header d-flex justify-content-center" id="fourth-day">
 
 			</div>
-			<div id="forecast5" class="card d-flex flex-column">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item d-flex justify-content-center" id="fourth-temp"></li>
+				<li class="list-group-item" id="fourth-description"></li>
+				<li class="list-group-item" id="fourth-humidity"></li>
+				<li class="list-group-item" id="fourth-wind"></li>
+				<li class="list-group-item" id="fourth-pressure"></li>
+			</ul>
+		</div>
+
+		<div class="card">
+			<div class="card-header d-flex justify-content-center" id="fifth-day">
 
 			</div>
-		</section>
-		<br>
-		<section>
-			<input class="w-100" type="text" id="searchPlaces" placeholder="Enter a location">
-			<button type="button" class="btn btn-primary text-white w-100" id="searchPlacesButton">Get Your 5-day Forecast</button>
-		</section>
-		<section class="row">
-			<!-- mapbox map -->
-			<div class="visible" id="map"></div>
-			<div class="coords"></div>
-		</section>
-	</main>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item d-flex justify-content-center" id="fifth-temp"></li>
+				<li class="list-group-item" id="fifth-description"></li>
+				<li class="list-group-item" id="fifth-humidity"></li>
+				<li class="list-group-item" id="fifth-wind"></li>
+				<li class="list-group-item" id="fifth-pressure"></li>
+			</ul>
+		</div>
+	</div>
+	<div class="mt-3" id='map' style='width: 100vw; height: 600px;'></div>
 
-<!--<script>-->
-<!--	$(function(){-->
-<!--		// mapbox geocoder-->
-<!--		mapboxgl.accessToken = MAPBOX_TOKEN;-->
-<!--		var map = new mapboxgl.Map({-->
-<!--			container: 'map',-->
-<!--			style: 'mapbox://styles/mapbox/streets-v9',-->
-<!--			zoom: 11,//start zoom-->
-<!--			center: [-96.318120, 32.798940]//start pos-->
-<!--		});-->
-
-<!--		var marker = new mapboxgl.Marker({-->
-<!--			draggable: true-->
-<!--		})-->
-<!--				.setLngLat([-96.4916, 32.7252])-->
-<!--				.addTo(map);-->
-
-<!--		function onDragEnd() {-->
-<!--			var lngLat = marker.getLngLat();-->
-
-<!--			console.log(lngLat);-->
-<!--			getWeather(lngLat.lat, lngLat.lng);-->
-<!--			reverseGeocode({lng: -96.4861, lat: 33.4260}, mapboxToken).then(function(results) {-->
-<!--				//address for The Alamo-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--				console.log(results);-->
-<!--				$("#location").html(results);-->
-
-<!--			});-->
-<!--		}-->
-
-<!--		// mapbox user search feature-->
-<!--		$('#searchPlacesButton').on("click", function() {-->
-<!--			$.get("https://api.openweathermap.org/data/2.5/forecast?", {-->
-<!--				APPID: OPEN_WEATHER_TOKEN,-->
-<!--				q: $('#searchPlaces').val(),-->
-<!--				units: "imperial",-->
-
-<!--			}).done(function (data) {-->
-<!--				var dailyData = []-->
-<!--				for (let i = 0; i < data.list.length; i += 8) {-->
-<!--					dailyData.push(data.list[i])-->
-<!--				}-->
-<!--				console.log(dailyData);-->
-
-<!--				console.log(dailyWeather)-->
-<!--				var day = []-->
-<!--				for (var i = 0; i <= 5; i++) {-->
-
-
-<!--					day.push({-->
-
-<!--						tempH: dailyData.main.temp_max.toFixed(0),-->
-<!--						tempL: dailyData.main.temp_min.toFixed(0),-->
-<!--						weatherIcon: dailyData.weather[0].icon,-->
-<!--						description: dailyData.weather[0].description,-->
-<!--						weatherCondition: dailyData.weather[0].main-->
-
-<!--					});-->
-<!--				}-->
-
-<!--					var daily;-->
-<!--					switch (day[i]) {-->
-<!--						case day[0]:-->
-<!--							daily = $('#card-one');-->
-<!--							break;-->
-<!--						case day[1]:-->
-<!--							daily = $('#card-two');-->
-<!--							break;-->
-<!--						case day[2]:-->
-<!--							daily = $('#card-three');-->
-<!--							break;-->
-<!--						case day[3]:-->
-<!--							daily = $('#card-four');-->
-<!--							break;-->
-<!--						case day[4]:-->
-<!--							daily = $('#card-five');-->
-<!--							break;-->
-<!--					}-->
-
-<!--				});-->
-
-<!--					$(daily).html(-->
-<!--							"<img src=\"" + day[i].WeatherIcon + "\" className=\"card-img-top\" alt=\"...\">" +-->
-<!--							"<div className=\"card-body\">" +-->
-<!--							"<h5 className=\"card-title\">" + "Condition: " + day[i].description + "<hr>" + "Feels like: " + day[i].tempFeel + "</h5>" +-->
-<!--							"<p className=\"card-text\">" + "High: " + day[i].tempH + "<hr>" + "Low: " + day[i].tempL + "</p>" +-->
-<!--							"</div>" +-->
-<!--							"<div className=\"card-footer\">" +-->
-<!--							"<small className=\"text-muted\"></small>" +-->
-<!--							"</div>"-->
-<!--					)-->
+	</body>
 
 
 
-
-
-
-
-
-<!--			// let dayOne = dailyData[0]-->
-<!--			// 	let dayOneDate = dailyData[0].dt_txt;-->
-<!--			// 	let dayOneMax = dailyData[0].main.temp_max-->
-<!--			// 	let dayOneMin = dailyData[0].main.temp_min-->
-<!--			// 	let dayOneIcon = dailyData[0].weather.icon-->
-<!--			// 	let dayOneDesc = dailyData[0].weather.description-->
-<!--			// 	let dayOneHum = dailyData[0].main.humidity-->
-<!--			// 	let dayOneWind = dailyData[0].wind.speed-->
-<!--			// 	let dayOnePress =dailyData[0].main.pressure-->
-<!--			//-->
-<!--			//-->
-<!--			// let dayTwo = dailyData[1]-->
-<!--			//-->
-<!--			// 	let dayTwoDate = dailyData[1].dt_txt;-->
-<!--			// 	let dayTwoMax = dailyData[1].main.temp_max-->
-<!--			// 	let dayTwoMin = dailyData[1].main.temp_min-->
-<!--			// 	let dayTwoIcon = dailyData[1].weather.icon-->
-<!--			// 	let dayTwoDesc = dailyData[1].weather.description-->
-<!--			// 	let dayTwoHum = dailyData[1].main.humidity-->
-<!--			// 	let dayTwoWind = dailyData[1].wind.speed-->
-<!--			// 	let dayTwoPress =dailyData[1].main.pressure-->
-<!--			//-->
-<!--			//-->
-<!--			// let dayThree = dailyData[2]-->
-<!--			//-->
-<!--			// 	let dayThreeDate = dailyData[2].dt_txt;-->
-<!--			// 	let dayThreeMax = dailyData[2].main.temp_max-->
-<!--			// 	let dayThreeMin = dailyData[2].main.temp_min-->
-<!--			// 	let dayThreeIcon = dailyData[2].weather.icon-->
-<!--			// 	let dayThreeDesc = dailyData[2].weather.description-->
-<!--			// 	let dayThreeHum = dailyData[2].main.humidity-->
-<!--			// 	let dayThreeWind = dailyData[2].wind.speed-->
-<!--			// 	let dayThreePress =dailyData[2].main.pressure-->
-<!--			//-->
-<!--			//-->
-<!--			// let dayFour = dailyData[3]-->
-<!--			//-->
-<!--			// 	let dayFourDate = dailyData[3].dt_txt;-->
-<!--			// 	let dayFourMax = dailyData[3].main.temp_max-->
-<!--			// 	let dayFourMin = dailyData[3].main.temp_min-->
-<!--			// 	let dayFourIcon = dailyData[3].weather.icon-->
-<!--			// 	let dayFourDesc = dailyData[3].weather.description-->
-<!--			// 	let dayFourHum = dailyData[3].main.humidity-->
-<!--			// 	let dayFourWind = dailyData[3].wind.speed-->
-<!--			// 	let dayFourPress =dailyData[3].main.pressure-->
-<!--			//-->
-<!--			//-->
-<!--			// let dayFive = dailyData[4]-->
-<!--			//-->
-<!--			// 	let dayFiveDate = dailyData[4].dt_txt;-->
-<!--			// 	let dayFiveMax = dailyData[4].main.temp_max-->
-<!--			// 	let dayFiveMin = dailyData[4].main.temp_min-->
-<!--			// 	let dayFiveIcon = dailyData[4].weather.icon-->
-<!--			// 	let dayFiveDesc = dailyData[4].weather.description-->
-<!--			// 	let dayFiveHum = dailyData[4].main.humidity-->
-<!--			// 	let dayFiveWind = dailyData[4].wind.speed-->
-<!--			// 	let dayFivePress =dailyData[4].main.pressure-->
-
-<!--			// console.log(dayThree.weather[0].icon)-->
-
-
-
-<!--		// var userInput = $('#searchPlaces').val()-->
-<!--		// mapboxgl.accessToken = MAPBOX_TOKEN;-->
-<!--		// var map = new mapboxgl.Map({-->
-<!--		// 	container: 'map',-->
-<!--		// 	style: 'mapbox://styles/mapbox/streets-v9',-->
-<!--		// 	zoom: 11,//start zoom-->
-<!--		// 	center:-->
-<!--		});-->
-<!--	});-->
-
-<!--</script>-->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<script src="js/keys.js"></script>
+	<script src="js/mapbox-geocoder-utils.js"></script>
 	<script>
-		(function(){
-		$().ready(function(){
-			var d = new Date();
-			var tz = Date();
-			// console.log("yikes" + poop);
-			//current weather
-			$.get("http://api.openweathermap.org/data/2.5/weather", {
-				APPID: OPEN_WEATHER_TOKEN,
-				q: "Dallas, US",
-				units: "imperial"
-			}).done(function(data) {
-				console.log(data.weather[0].main);
-
-			});
-
-			var markerExists = false;
-			var marker;
-			var destinationLat;
-			var destinationLng;
 
 
+		(function() {
+			var url = "http://api.openweathermap.org/data/2.5/forecast";
 
-			$('#searchPlacesButton').click(function (){
+			getInfo();
 
-				$.get("https://api.openweathermap.org/data/2.5/forecast", {
-					APPID: OPEN_WEATHER_TOKEN,
-					lat: destinationLat,
-					lon: destinationLng,
-					units: "imperial",
-					q: $('#searchPlaces').val()
-				}).done(function(data){
-					$('#searchPlaces').val("")
-					var day = [];
-					for (var i = 0; i < 6; i++) {
-						// var temp = data.list[i].main.temp.toFixed(0);
-						// var tempH = data.list[i].main.temp_max.toFixed(0);
-						// var tempL = data.list[i].main.temp_min.toFixed(0);
-						// var tempFeel = data.list[i].main.feels_like.toFixed(0);
-						// var mainWeatherCondition = data.list[i].weather[0].main;
-						day.push({
-							temp: data.list[i].main.temp.toFixed(0),
-							tempH: data.list[i].main.temp_max.toFixed(0),
-							tempL: data.list[i].main.temp_min.toFixed(0),
-							tempFeel: data.list[i].main.feels_like.toFixed(0),
-							mainWeatherCondition: data.list[i].weather[0].main,
-							description: data.list[i].weather[0].description,
-							wind: data.list[i].wind.speed,
-							weatherDate: data.list[i].lastupdate
+			function getInfo(){
+
+
+				$.get(url, {
+					"APPID": OPEN_WEATHER_TOKEN,
+					"q" : $("#input-search").val(),
+					"units": "imperial"
+				}).done(function (data){
+					console.log(data);
+					$("#current-city").text("Current city: " + data.city.name);
+					for (var i = 0; i < data.list.length; i++) {
+						if (i === 0) {
+							var date = data.list[i].dt_txt;
+							var splitDate = date.split(" ");
+
+							$("#first-day").text(splitDate[0]);
+							$("#first-temp").text(data.list[0].main.temp_max + "°F / " + data.list[0].main.temp_min + "°F");
+							$("#first-description").text("Description: " + data.list[0].weather[0].description);
+							$("#first-humidity").text("Humidity: " +data.list[0].main.humidity + "%").css("font-weight", "bold");
+							$("#first-wind").text("Wind: " + data.list[0].wind.speed);
+							$("#first-pressure").text("Pressure: " + data.list[0].main.pressure);
+						} else if(i === 8){
+							var dateSecond = data.list[i].dt_txt;
+							var splitDateSecond = dateSecond.split(" ");
+
+
+							$("#second-day").text(splitDateSecond[0]);
+							$("#second-temp").text(data.list[8].main.temp_max + "°F / " + data.list[8].main.temp_min + "°F");
+							$("#second-description").text("Description: " + data.list[8].weather[0].description);
+							$("#second-humidity").text("Humidity: " +data.list[8].main.humidity + "%");
+							$("#second-wind").text("Wind: " + data.list[8].wind.speed);
+							$("#second-pressure").text("Pressure: " + data.list[8].main.pressure);
+						}else if (i === 16){
+							var dateThird = data.list[i].dt_txt;
+							var splitThird = dateThird.split(" ");
+
+							$("#third-day").text(splitThird[0]);
+							$('#third-temp').text(data.list[16].main.temp_max + "°F / " + data.list[16].main.temp_min + "°F");
+							$("#third-description").text("Description: " + data.list[16].weather[0].description);
+							$("#third-humidity").text("Humidity: " +data.list[16].main.humidity + "%");
+							$("#third-wind").text("Wind: " + data.list[16].wind.speed);
+							$("#third-pressure").text("Pressure: " + data.list[16].main.pressure);
+						}else if(i === 24){
+							var dateFourth = data.list[i].dt_txt;
+							var splitFourth = dateFourth.split(" ");
+							$("#fourth-day").text(splitFourth[0]);
+							$('#fourth-temp').text(data.list[24].main.temp_max + "°F / " + data.list[24].main.temp_min + "°F");
+							$("#fourth-description").text("Description: " + data.list[24].weather[0].description);
+							$("#fourth-humidity").text("Humidity: " +data.list[24].main.humidity + "%");
+							$("#fourth-wind").text("Wind: " + data.list[24].wind.speed);
+							$("#fourth-pressure").text("Pressure: " + data.list[24].main.pressure);
+
+
+						} else if(i === 32){
+							var dateFifth = data.list[i].dt_txt;
+							var splitFifth = dateFifth.split(" ");
+							$("#fifth-day").text(splitFifth[0]);
+							$('#fifth-temp').text(data.list[32].main.temp_max + "°F / " + data.list[32].main.temp_min + "°F");
+							$("#fifth-description").text("Description: " + data.list[32].weather[0].description);
+							$("#fifth-humidity").text("Humidity: " +data.list[32].main.humidity + "%");
+							$("#fifth-wind").text("Wind: " + data.list[32].wind.speed);
+							$("#fifth-pressure").text("Pressure: " + data.list[32].main.pressure);
+
+						}
+					}
+					geocode('Dallas', MAPBOX_TOKEN).then(function (result) {
+						console.log(result);
+						mapboxgl.accessToken = MAPBOX_TOKEN;
+						var map = new mapboxgl.Map({
+							container: 'map',
+							style: 'mapbox://styles/mapbox/streets-v9',
+							zoom: 9,
+							center: ([data.city.coord.lon, data.city.coord.lat])
 						});
 
-						var weatherForecast;
-						switch (day[i]){
-							case day[1]:
-								weatherForecast = $('#forecast1')
-								break;
-							case day[2]:
-								weatherForecast = $('#forecast2')
-								break;
-							case day[3]:
-								weatherForecast = $('#forecast3')
-								break;
-							case day[4]:
-								weatherForecast = $('#forecast4')
-								break;
-							case day[5]:
-								weatherForecast = $('#forecast5')
-								break;
-						}
-						$(weatherForecast).html(
+						var markerOptions = {
+							color: 'blue',
+							draggable: true
+						};
+						var marker = new mapboxgl.Marker(markerOptions)
+								.setLngLat([data.city.coord.lon, data.city.coord.lat])
+								.addTo(map);
 
 
+						map.on('click', function() {
+							var popup = new mapboxgl.Popup()
+									.setHTML("<h1>"+ data.city.name +"</h1>")
+									.addTo(map);
+							marker.setPopup(popup);
+						});
 
-								"<p className=\"day-one-temp\">" + "High: " + day[i].tempH  + "</p>" +
-								"<p className=\"d\">" + "Low: " + day[i].tempL + "</p>" +
-								"<hr>" +
-								"<div className=\"day-one-desc\">" +
-								day[i].description +
-								day[i].wind +
-
-								"</div>"
-
-
-						)
-					}
+					});
 				});
-			})
-
-			mapboxgl.accessToken = MAPBOX_TOKEN;
-			const map = new mapboxgl.Map({
-				container: 'map', // container ID
-				style: 'mapbox://styles/mapbox/streets-v11', // style URL
-				center: [-96.7970, 32.7767], // starting position [lng, lat]
-				zoom: 9 // starting zoom
+			}
+			$("#submit-weather").click(function (e) {
+				e.preventDefault();
+				getInfo();
 			});
 
-			geocode("Dallas, Texas", MAPBOX_TOKEN).then(function(result) {
-
-				map.setCenter(result);
-				map.setZoom(8);
-			});
-
-
-		});
-	})();
-</script>
-
+		})();
+	</script>
 </body>
 </html>
