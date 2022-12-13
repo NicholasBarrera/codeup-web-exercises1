@@ -14,6 +14,8 @@
         getArea: function () {
             // TODO: complete this method
             // hint: area = pi * radius^2
+
+
             let area = Math.PI * Math.pow(this.radius, 2);
             return area; // TODO: return the proper value
         },
