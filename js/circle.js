@@ -243,7 +243,28 @@ console.log(vowel_count("The quick brown fox"));
 
 
 //Write a JavaScript function that accepts a number as a parameter and check the number is prime or not. Go to the editor
+// // Note : A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+//
+// Write a JavaScript function that accepts a number as a parameter and check the number is prime or not. Go to the editor
 // Note : A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
 
-Write a JavaScript function that accepts a number as a parameter and check the number is prime or not. Go to the editor
-Note : A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+function detect_data_type(value)
+{
+    var dtypes = [Function, RegExp, Number, String, Boolean, Object], x, len;
+
+    if (typeof value === "object" || typeof value === "function")
+    {
+        for (x = 0, len = dtypes.length; x < len; x++)
+        {
+            if (value instanceof dtypes[x])
+            {
+                return dtypes[x];
+            }
+        }
+    }
+
+    return typeof value;
+}
+console.log(detect_data_type(12));
+console.log(detect_data_type('w3resource'));
+console.log(detect_data_type(false));
