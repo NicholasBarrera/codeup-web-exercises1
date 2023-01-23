@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+
+
+   <h1>Coffee!</h1>
+
+    <form>
+        <label for="roast-selection"></label>
+        <select id="roast-selection">
+            <option>light</option>
+            <option>medium</option>
+            <option>dark</option>
+        </select>
+        <input id="submit" type="submit" />
+    </form>
+
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>ROAST</th>
+            </tr>
+        </thead>
+        <tbody id="coffees"></tbody>
+    </table> -->
+    <div id="coffees">
+    	<!-- <h1></h1>
+    	<p></p> -->
+    </div>	
+<script>
+    	// LeetCode Problems 
+    	// 1. Two Sum 
+//     	Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+// You can return the answer in any order.
+
+ 
+
+// // Example 1:
+
+// // Input: nums = [2,7,11,15], target = 9
+// // Output: [0,1]
+// // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+// // HASH MAP
+// var twoSum = function (nums, target) {
+// 	let map = new Map();
+// 	for (let i = 0; i<nums.length;i++){
+// 		let num1 = nums[i];
+// 		let num2 = target - num1;
+
+// 		if (map.has(num2)) {
+// 			return [i, map.get(num2)];
+// 		}
+// 		map.set(num1, i);
+
+// 	}
+// };
+// // NESTING FOR LOOP
+// let twoSum = (nums, target) =>{
+// 	for (let i =0;i<nums.length;i++){
+// 		for (let j = i + 1;j<nums.length;j++){
+// 			if (nums[i] + nums[j] === target){
+// 				return [i,j]
+// 			}
+// 		}
+// 	}
+// }
+
+// // OBJECT
+// var twoSum = function(nums, target) {
+//   let hash = {};
+
+//   for(let i = 0; i < nums.length; i++) {
+//     const n = nums[i];
+//     if(hash[target - n] !== undefined) {
+//       return [hash[target - n], i];
+//     }
+//     hash[n] = i;
+//   }
+//   return [];
+// };
+
+// const twoSum = (arr, total)=>{
+// 	let map = new Map();
+// 	for (let i=0;i<arr.length;i++){
+// 		let num1 = arr[i];
+// 		let num2 = total - arr[i];
+// 		if (map.has(num2)) {
+// 			return [i, map.get(num2)]
+// 		}
+// 		map.set(num1, i)
+
+// 	}
+// }
+// ////////////////////////////////////
+
+// find average of array of numbers and return the average 
+
+// let total = 0;
+// for (let i=0; i<arr.length;i++){
+// 	total+=arr[i];
+
+// }
+// let avg = total/arr.length;
+
+// const average = (nums)=>{
+// 	let total = 0;
+// 	for(let i =0;i<nums.length;i++){
+// 		total+=num[i];
+// 	}
+// 	return total/num.length
+// };
+
+
+// let array = [1,2,3,4,5]
+
+// const average = (array) => {
+// 	let totalNum = array.reduce((total, curr) => {
+// 		total + curr
+// 	});
+// 	return totalNum/array.length;
+// };
+
+
+// // Add two numbers
+// [1,2]
+// [3]
+// [1,2,3]
+
+
+
+////////////////////////////////////
+
+const starWars = async () => {
+	const res = await fetch("https://swapi/dev/api/people/1/");
+	const data = await res.json();
+
+}; catch (e) {
+	console.log('error', e)
+}
+
+starWars();
+
+
+
+
+
+
+</script>
+
+
+
+
+  </body>
+</html>
